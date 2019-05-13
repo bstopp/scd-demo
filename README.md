@@ -8,11 +8,11 @@ This project provides an example of how to configure a Sling Content Distributio
 Almost everything that is needed is provided by the different modules. Only one configuration needs to be updated.
 
 1. Log onto the [Author's Crypto Support](http://scd-demo.localhost:4502/system/console/crypto) and encrypt the *scd-transport-user*'s password (`password`)
-1. Update Crypto Distribution Transport Secret Provider configuration with the encrypted password: [Need link]()
+1. Update Crypto Distribution Transport Secret Provider configuration with the encrypted password [here](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config.author/com.adobe.granite.distribution.core.impl.CryptoDistributionTransportSecretProvider-scd-demo.xml#L6).
 1. Run the ACL Tool to apply the User/Permissions, curl commands are (assuming standard installations for ports):
-  *  curl -sS --retry 1 -u admin:admin -X POST http://localhost:4502/system/console/jmx/biz.netcentric.cq.tools:type=ACTool/op/apply/
-  *  curl -sS --retry 1 -u admin:admin -X POST http://localhost:4503/system/console/jmx/biz.netcentric.cq.tools:type=ACTool/op/apply/
-  *  curl -sS --retry 1 -u admin:admin -X POST http://localhost:4504/system/console/jmx/biz.netcentric.cq.tools:type=ACTool/op/apply/
+  *  `curl -sS --retry 1 -u admin:admin -X POST http://localhost:4502/system/console/jmx/biz.netcentric.cq.tools:type=ACTool/op/apply/`
+  *  `curl -sS --retry 1 -u admin:admin -X POST http://localhost:4503/system/console/jmx/biz.netcentric.cq.tools:type=ACTool/op/apply/`
+  *  `curl -sS --retry 1 -u admin:admin -X POST http://localhost:4504/system/console/jmx/biz.netcentric.cq.tools:type=ACTool/op/apply/`
 
 That should be all that's needed.
 
@@ -82,7 +82,7 @@ Required on:
  * Author
  * Pubilsh
 
-[This configuration]() maps the service user to the bundles/services for accessing the repository.
+[This configuration](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config/org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-scd-demo.xml) maps the service user to the bundles/services for accessing the repository.
 
 #### Apache Sling Distribution Request Authorization - Privilege Request Authorization Strategy
 
@@ -90,7 +90,7 @@ Required on:
  * Author
  * Pubilsh
 
-[This configuration]() maps a service name to a specific permission required by the service account in order to distribute the content.
+[This configuration](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config/org.apache.sling.distribution.agent.impl.PrivilegeDistributionRequestAuthorizationStrategyFactory-scd-demo.xml) maps a service name to a specific permission required by the service account in order to distribute the content.
 
 * *Name*: Provide a unique name for looking up this service.
 * *JCR Privilege*: The privilige that the user who wants to distribute content must have, or the distribution will be ignored/fail. 
@@ -100,7 +100,7 @@ Required on:
 Required on: 
  * Author
 
-[This configuration]() provides a service for managing a user/password in an encrypted fashion, so that the Distribution services can authenticate to the Publish server.
+[This configuration](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config.author/com.adobe.granite.distribution.core.impl.CryptoDistributionTransportSecretProvider-scd-demo.xml) provides a service for managing a user/password in an encrypted fashion, so that the Distribution services can authenticate to the Publish server.
 
 The value in this file must be update for each specific AEM Author, as the password is encrypted using the Authors keys.
   
@@ -115,7 +115,7 @@ Required on:
  * Author
  * Pubilsh
  
-[This configuration]() defines how the packages for the distribution are created.
+[This configuration](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config/org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory-scd-demo.xml) defines how the packages for the distribution are created.
 
 * *Name*: Provide a unique name for looking up this service.
 * *Type*: The type of package that is created by this packager.
@@ -139,7 +139,7 @@ Required on:
 Required on: 
  * Author
 
-[This configuration]() triggers the sync agent to check for available packages on the Publish instances.
+[This configuration](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config.author/org.apache.sling.distribution.trigger.impl.ScheduledDistributionTriggerFactory-scd-demo.xml) triggers the sync agent to check for available packages on the Publish instances.
 
 * *Name*: A unique name for looking up this service.
 * *Distribution Type*: The type of request to trigger.
@@ -152,7 +152,7 @@ Required on:
 Required on:
  * Publish
 
-[This configuration]() is used to unpack a package synchronized from the Author.
+[This configuration](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config.publish/org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory-scd-demo.xml) is used to unpack a package synchronized from the Author.
 
 * *Name*: The name of the importer. This will be used and the service endpoint in the URL mapping.
 * *Package Builder*: Service reference for the package builder to used to unpack the distributed packages. This takes the format `(name=<vlt-servicename>)`
@@ -163,7 +163,7 @@ Required on:
 Required on:
  * Publish
 
-[This configuration]() is used to queue content on the Publish tier for synchronization. It is read by the Author sync agent.
+[This configuration](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config.publish/org.apache.sling.distribution.agent.impl.QueueDistributionAgentFactory-scd-demo.xml) is used to queue content on the Publish tier for synchronization. It is read by the Author sync agent.
 
 * *Name*: A unique name for looking up the service.
 * *Kind*: The type of Queue. (This property is not visible on the OSGi form, the name is `kind` and value is `agent`)
@@ -185,7 +185,7 @@ Required on:
 Required on:
  * Publish
 
-[This configuration]() is used as the service endpoint on the Publish tier for synchronization. It is read by the Author sync agent.
+[This configuration](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config.publish/org.apache.sling.distribution.packaging.impl.exporter.AgentDistributionPackageExporterFactory-scd-demo.xml) is used as the service endpoint on the Publish tier for synchronization. It is read by the Author sync agent.
 
 * *Name*: The name of the exporter. This will be used and the service endpoint in the URL mapping.
 * *Queue*: The name of the queue on the agent to read for distributing content. Specify either a named priority queue, or default.
@@ -196,7 +196,7 @@ Required on:
 Required on:
  * Author
 
-[This configuration]() is used to manage the actual synchronization between the publish tier.
+[This configuration](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config.author/org.apache.sling.distribution.agent.impl.SyncDistributionAgentFactory-scd-demo.xml) is used to manage the actual synchronization between the publish tier.
 
 * *Name*: Unique name for this service for references.
 * *Kind*: The type of Factory. (This property is not visible on the OSGi form, the name is `kind` and value is `agent`)
@@ -227,18 +227,18 @@ There are two users that this demo uses to perform its operations.
 #### Sync Service User
 This system user is for the services to access the repository to package and process updates to the content. 
 
-The permission necessary for this user are found in the provided NetCentric ACL Tool yaml configuration [here]().
+The permission necessary for this user are found in the provided NetCentric ACL Tool yaml configuration [here](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config/acl-config.yaml#L13-L29).
 
 #### Sync Transport User
 
 This user is used to authenticate from the Author to the Publish to send the packages. This is not a system user, as it needs to support password authentication. However it only needs to be created on the _Publish_ systems.
  
-As of the time of this writing, it also must be in the administrators group - until someone can determine the minimum permissions to support a package transport and install. The NetCentric ACL Tool configuration can be found [here]().
+As of the time of this writing, it also must be in the administrators group - until someone can determine the minimum permissions to support a package transport and install. The NetCentric ACL Tool configuration can be found [here](/ui.apps/src/main/content/jcr_root/apps/scd-demo/config.publish/acl-config.yaml#L3-L9).
 
 
 ### Implementation Provided Code
 
-In order to trigger a sync event, a JCR Event listener is required. This listener will listen for events, and trigger a distribution event. [This is an example for this demo]().
+In order to trigger a sync event, a JCR Event listener is required. This listener will listen for events, and trigger a distribution event. [This is an example for this demo](/core/src/main/java/com/github/bstopp/demo/scd/core/listeners/PageModificationEventListener.java).
 
 ### Testing the Demo.
 
