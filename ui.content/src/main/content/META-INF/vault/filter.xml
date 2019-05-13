@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/scd-demo" mode="merge"/>
+    <filter root="/content/scd-demo" mode="merge"/>
+    <filter root="/content/dam/scd-demo" mode="merge"/>
+    <filter root="/home/users/v" mode="merge" />
+    <filter root="/home/users/v/vZMI_EKL7VLbj0M7-YFT" mode="replace">
+        <exclude pattern="/home/users/v/vZMI_EKL7VLbj0M7-YFT/\.tokens"/>
+    </filter>
+</workspaceFilter>

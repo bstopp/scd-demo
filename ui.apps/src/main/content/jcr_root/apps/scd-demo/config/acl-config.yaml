@@ -1,0 +1,29 @@
+- user_config:
+
+    - scddemo-service-admin:
+
+        - name: SCD Demo Service Admin
+          description: User for SCD Demo to interact with the SCD Services.
+          path: scd-demo
+          isSystemUser: true
+
+
+- ace_config:
+
+    - scddemo-service-admin:
+
+        - path: /content/scd-demo
+          permission: allow
+          actions: read,modify,create,delete,replicate
+
+        - path: /libs/sling/distribution
+          permission: allow
+          actions: read,modify,create,delete
+
+        - path: /var/sling
+          permission: allow
+          actions: read
+
+        - path: /var/sling/distribution
+          permission: allow
+          actions: read,modify,create,delete

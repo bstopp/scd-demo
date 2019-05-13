@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="sling:OsgiConfig"
+    name="scddemo-agent-queue"
+    kind="agent"
+    type="queue"
+    title="SCD Demo"
+    details="Queue for Sling Content Distribution Demo"
+    queue.processing.enabled="${Boolean}true"
+    enabled="{Boolean}true"
+    serviceName="scddemo-sync-service"
+    log.level="debug"
+    allowed.roots="[/content/scd-demo]"
+    requestAuthorizationStrategy.target="(name=scddemo-privilege)"
+    packageBuilder.target="(name=scddemo-vlt-packager)"
+/>

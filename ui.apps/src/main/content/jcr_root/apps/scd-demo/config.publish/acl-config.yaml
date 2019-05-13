@@ -1,0 +1,9 @@
+- user_config:
+
+    - scd-transport-user:
+
+        - name: SCD Demo
+          description: User for SCD Demo to receive updates on the Publish instances.
+          path: scd-demo
+          isMemberOf: administrators
+          password: password
